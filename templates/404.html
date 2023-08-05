@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  {{ super() }}
+
+{% endblock %}
+
+{% block title %}NOT FOUND{% endblock %}
+
+{% block content %}
+<div class="container">
+</br>
+  <h1 class="heading">Not Found Error - 404</h1>
+    <p class="description">Please make sure that you use correct url address</p>
+    <a href="{{url}}" class="nav-link">Go to Home Page </a>
+  </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center mt-5">
+  <div class="container">
+    <img src="../static/img/list.png"  width="100px" alt="list icon"> 
+    <h1 class="display-4"> To Do List </h1>
+    <p class="lead">Do You want to create your own to do list?</p>
+    <hr class="my-4">
+    <p class="mb-5">You've found the right place! Register if you do not have an account , or Log in instead if you have one </p>
+    <a class="btn btn-success btn-lg mr-4" href="{{url_for('register')}}" role="button">Register</a>
+    <a class="btn btn-warning btn-lg" href="{{url_for('login')}}" role="button">Login</a>
+
+  </div>
+</div>
+{% endblock %}

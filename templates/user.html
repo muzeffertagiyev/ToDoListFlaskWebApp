@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %} - {{current_user.username.title()}}{% endblock %}
+{% block styles %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center mt-5">
+  <div class="container">
+    <img src="../static/img/list.png"  width="100px" alt="list icon"> 
+    <h1 class="display-4"> To Do List </h1>
+      <a class="btn btn-warning btn-lg mr-4 mt-5" href="{{url_for('change_username', username=current_user.username)}}" role="button">Change Name</a>
+      <a class="btn btn-success btn-lg mr-2 mt-5" href="{{url_for('reset_password', username=current_user.username)}}" role="button">Reset Password</a>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {%for category, message in messages%}
+                <div class="alert alert-{{category}}" role="alert" id="flash-message">
+                    {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+  {% endwith %}
+  <h1>Add a New Task</h1>
+  <form action="{{url_for('user_list',username=current_user.username)}}" method="POST">
+        {{ task_form.csrf_token }}
+        
+      <div class="form-group"> 
+        {{task_form.title(class="form-control" ,id="add_task",placeholder="Enter new task",required="required")}}
+      </div>
+      <div class="form-group"> 
+        {{task_form.description(class="form-control",placeholder="Enter task description",required="required")}}
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Add Task</button>
+      </div>
+  </form>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-12">
+      
+      <hr class="my-4">
+      <h2>UnCompleted Tasks</h2>
+      <div id="uncompletedTasks">
+        {% for task in uncompleted_tasks %}
+        <div class="card">
+            <div class="card-body" data-completed="{{ 'true' if task.completed else 'false' }}" data-task-id="{{ task.id }}">
+                <h5 class="card-title task-title" data-toggle="collapse" data-target="#task{{ task.id }}Description" style="cursor: pointer;">{{ task.title }}</h5>
+                <div id="task{{ task.id }}Description" class="collapse">
+                    <p>{{ task.description }}</p>
+                </div>
+                <button id="task{{ task.id }}" class="btn {{ 'btn-success' if task.completed else 'btn-secondary' }} mr-3" onclick="toggleCompletion('{{ task.id }}')">
+                    {{ 'Completed' if task.completed else 'Not Completed' }}
+                </button>
+                <a class="btn btn-info mr-3" href="{{url_for('update_task', id=task.id)}}">Update</a>
+                <a class="btn btn-danger" href="{{url_for('delete_task', id=task.id)}}">Delete</a>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+    <br>
+    
+    <h2>Completed Tasks</h2>
+    <div id="completedTasks">
+        {% for task in completed_tasks %}
+        <div class="card">
+            <div class="card-body" data-completed="{{ 'true' if task.completed else 'false' }}" data-task-id="{{ task.id }}">
+                <h5 class="card-title task-title" data-toggle="collapse" data-target="#task{{ task.id }}Description" style="cursor: pointer;">{{ task.title }}</h5>
+                <div id="task{{ task.id }}Description" class="collapse">
+                    <p>{{ task.description }}</p> 
+                </div>
+                <button id="task{{ task.id }}" class="btn {{ 'btn-success' if task.completed else 'btn-secondary' }} mr-3" onclick="toggleCompletion('{{ task.id }}')">
+                    {{ 'Completed' if task.completed else 'Not Completed' }}
+                </button>
+                <a class="btn btn-info mr-3" href="{{url_for('update_task', id=task.id)}}">Update</a>
+                <a class="btn btn-danger" href="{{url_for('delete_task', id=task.id)}}">Delete</a>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+          <br>
+      <hr class="my-4">
+      <p><a href="#add_task">Add New Task</a></p>
+      
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/hide_flash.js')}}"></script>
+
+<script>
+  
+</script>
+
+
+{% endblock %}

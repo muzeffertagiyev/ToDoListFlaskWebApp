@@ -1,0 +1,76 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  /* font-family: 'Poppins',sans-serif; */
+} 
+
+body{
+  background-color: rgba(39, 142, 212, 0.048);
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
+  color: #149ddd;
+}
+
+
+/* Custom styles for the content container */
+.content-container {
+  padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
+.form-select.form-control {
+  padding: 0.375rem 1.75rem; /* Adjust the padding as needed */
+  line-height: 1.5;
+  border-radius: 18px;
+}
+
+.cafe-icon{
+  text-align: center;
+  background-color: #5891ff;
+  border-radius: 45%;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 40px;
+  padding-top: 30px;
+}
+
+/* Increase the z-index of the navigation bar */
+.nav-menu {
+  z-index: 1000;
+}
+
+
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-inline {
+  margin-right: 20px;
+}
+
+/* Optional styles to make the form more visually appealing */
+/* .form-inline input[type="search"] {
+  width: 150px;
+  margin-right: 5px;
+}
+
+.form-inline .btn {
+  min-width: 60px;
+} */
+

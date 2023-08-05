@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} - Login{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/authentication.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+{% endblock %}
+
+
+{% block content %}
+{% if request.endpoint == 'login' %}
+<body class="authentication-section">
+{% else %}
+<body>
+{% endif %}
+<div class="form-container authentication-section">
+  <div class="wrapper">
+    <div class="title">Log In</div>
+    
+    <form class="authentication-form" action="{{ url_for('login') }}" method="POST">
+      {{ form.csrf_token }}
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {%for category, message in messages%}
+                <div class="alert alert-{{category}}" role="alert" id="flash-message">
+                  {{message}}
+                </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+      
+      <div class="row">
+        <i class="fas fa-envelope"></i>
+        {{ form.email(placeholder="Enter your email", required="required") }}
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        {{ form.password(placeholder="Enter your password", required="required") }}
+      </div>
+      <div class="row button">
+        <input type="submit" value="Login">
+      </div>
+      <div class="signup-link">Not a member? <a href="{{url_for('register')}}">Signup now</a></div>
+    </form>
+  </div>
+</div>
+</body>
+{% endblock %}
+
