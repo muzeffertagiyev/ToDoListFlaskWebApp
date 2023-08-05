@@ -1,5 +1,5 @@
 
-```markdown
+
 # Flask Todo List App
 
 This is a simple Flask-based web application for managing a todo list. Users can register, log in, create tasks, mark tasks as completed, update task details, and change their username and reset their passwords.
