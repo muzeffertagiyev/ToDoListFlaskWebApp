@@ -7,6 +7,12 @@ This is a simple Flask-based web application for managing a todo list. Users can
 ## Introduction Video of the Website
 
 
+
+https://github.com/muzeffertagiyev/ToDoListFlaskApp/assets/75939608/6fb11a55-a343-4476-a511-9d9a5324bb04
+
+
+
+
 ## Features
 
 - User Registration: Users can create new accounts by providing a unique username and email.
