@@ -89,7 +89,7 @@ def home():
 def user_list(username):
     user = User.query.filter_by(username=username).first_or_404()
 
-    # Cafe.query.filter_by(user_id=user.id).order_by(Cafe.id.desc())
+    
     uncompleted_tasks = Task.query.filter_by(user_id=user.id, completed=False).order_by(Task.id.desc()).all()
     completed_tasks = Task.query.filter_by(user_id=user.id, completed=True).order_by(Task.id.desc()).all()
 
@@ -266,10 +266,10 @@ def update_task(id):
             task.title = edit_form.title.data
             task.description = edit_form.description.data
             db.session.commit()
-            flash('Cafe Was Updated Successfully','success')
+            flash('Task Was Updated Successfully','success')
             return redirect(url_for('user_list',username=current_user.username))
     else:
-        flash("You can only edit Your Cafes",'danger')
+        flash("You can only edit Your Tasks",'danger')
         return redirect(url_for('user_list',username=current_user.username))
 
 
@@ -283,7 +283,7 @@ def delete_task():
     task = Task.query.get(task_id)
     db.session.delete(task)
     db.session.commit()
-    flash(f"Cafe '{task.title}' was deleted Successfully!",'danger')
+    flash(f"Task '{task.title}' was deleted Successfully!",'danger')
     return redirect(url_for('user_list',username=current_user.username))
 
 
