@@ -61,7 +61,7 @@
                     {{ 'Completed' if task.completed else 'Not Completed' }}
                 </button>
                 <a class="btn btn-info mr-3" href="{{url_for('update_task', id=task.id)}}">Update</a>
-                <a class="btn btn-danger" href="{{url_for('delete_task', id=task.id)}}">Delete</a>
+                <a class="btn btn-danger mt-3" href="{{url_for('delete_task', id=task.id)}}">Delete</a>
             </div>
         </div>
         
